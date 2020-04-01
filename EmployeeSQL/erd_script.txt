@@ -1,0 +1,57 @@
+
+Table departments {
+  dept_no varchar(4) [pk]
+  dept_name varchar(20)
+}
+
+Table employees {
+emp_no  int [pk]
+birth_date date
+first_name varchar(20) 
+last_name varchar(20) 
+gender varchar(1) 
+hire_date date
+}
+Table dept_emp  {
+  emp_no int
+  dept_no varchar(4) 
+  from_date date
+  to_date date
+}
+
+Ref: "departments"."dept_no" < "dept_emp"."dept_no"
+
+Ref: "employees"."emp_no" < "dept_emp"."emp_no"
+
+Table dept_manager {
+dept_no varchar(4) 
+emp_no  int
+from_date date
+to_date date
+}
+
+Ref: "dept_manager"."dept_no" > "departments"."dept_no"
+
+Table salaries {
+emp_no int
+salary int
+from_date date
+to_date date
+}
+
+
+Ref: "employees"."emp_no" < "salaries"."emp_no"
+
+
+table titles {
+emp_no int
+title varchar(20)
+from_date date
+to_date date
+}
+
+
+
+Ref: "employees"."emp_no" < "titles"."emp_no"
+
+Ref: "employees"."emp_no" - "dept_manager"."emp_no"
